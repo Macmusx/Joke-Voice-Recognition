@@ -1,7 +1,19 @@
 #:kivy 2.0.0
 
 <Core>:
-    PlayAudio:
-        text: 'TEST'
-        size_hint: 0.2, 0.3
-        on_press: root.playAudio()
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint: 0.6, 1
+
+        PlayAudio:
+            text: 'Play Audio'
+            size_hint: 0.5, 0.5
+            on_press: root.playAudio()
+        StopAudio:
+            text: 'Stop Audio'
+            size_hint: 0.5, 0.5
+            on_press: root.stopAudio()
+    TextInput:
+        size_hint: 0.8, 1
+        id: terminal
+        disabled: True
