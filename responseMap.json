@@ -1,6 +1,6 @@
 {
-  "1": "alba",
-  "2": "papanasi",
-  "3": "si",
-  "4": "bancuri"
+  "audio_files\\1.ogg": "papanasi",
+  "audio_files\\2.ogg": "alba",
+  "audio_files\\3.ogg": "si",
+  "audio_files\\4.ogg": "bancuri"
 }

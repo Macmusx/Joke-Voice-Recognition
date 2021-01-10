@@ -3,16 +3,25 @@
 <Core>:
     BoxLayout:
         orientation: 'vertical'
-        size_hint: 0.6, 1
+        size_hint: 0.5, 1
 
         PlayAudio:
             text: 'Play Audio'
-            size_hint: 0.5, 0.5
+            size_hint: 1, 0.5
             on_press: root.playAudio()
         StopAudio:
             text: 'Stop Audio'
-            size_hint: 0.5, 0.5
+            size_hint: 1, 0.5
             on_press: root.stopAudio()
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint: 0.5, 1
+
+        Respond:
+            id: respond
+            text: 'Respond'
+            size_hint: 1, 0.5
+            on_press: root.respond()
     TextInput:
         size_hint: 0.8, 1
         id: terminal
