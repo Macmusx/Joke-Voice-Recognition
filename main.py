@@ -37,23 +37,27 @@ class Engine:
             file_read = sr.AudioFile('temp.wav')  # citesc fisierul -> astfel devenint de tipul Audio Data
             with file_read:
                 source = recognizer.record(file_read)  # inregistrez ce e in fisierul audio
-                text = recognizer.recognize_google(source, language='ro-RO')  # folosesc serviciile de la google pentru
-                # a vedea ce am zis
-                Terminal.showText(self, 'Ati spus: ' + text)  # afisam text-ul
-                # transformam diacriticile in litere normale pentru a putea compara cu raspunsul trecut in json
-                # am decis de la inceput sa nu folosim diacritice pentru a detecta cu mai multa precizie raspunsul
-                text = re.sub(r'/șȘ/gm', 's', text)
-                text = re.sub(r'/ăĂ/gm', 'a', text)
-                text = re.sub(r'/îÎ/gm', 'i', text)
-                text = re.sub(r'/âÂ/gm', 'a', text)
-                text = re.sub(r'/țȚ/gm', 't', text)
+                try:
+                    text = recognizer.recognize_google(source,
+                                                       language='ro-RO')  # folosesc serviciile de la google pentru
+                    # a vedea ce am zis
+                    Terminal.showText(self, 'Ati spus: ' + text)  # afisam text-ul
+                    # transformam diacriticile in litere normale pentru a putea compara cu raspunsul trecut in json
+                    # am decis de la inceput sa nu folosim diacritice pentru a detecta cu mai multa precizie raspunsul
+                    text = re.sub(r'/șȘ/gm', 's', text)
+                    text = re.sub(r'/ăĂ/gm', 'a', text)
+                    text = re.sub(r'/îÎ/gm', 'i', text)
+                    text = re.sub(r'/âÂ/gm', 'a', text)
+                    text = re.sub(r'/țȚ/gm', 't', text)
 
-                # verificam daca e raspunsul bun
-                if response.lower() in text.lower():  # transformam toate literele mari in litere mici si verificam
-                    # daca raspunsul spus contine raspunsul corect pentru a asigura o mai mare corectitudine
-                    Terminal.showText(self, 'Raspuns Corect!!')
-                else:
-                    Terminal.showText(self, 'Raspuns Gresit!!')
+                    # verificam daca e raspunsul bun
+                    if response.lower() in text.lower():  # transformam toate literele mari in litere mici si verificam
+                        # daca raspunsul spus contine raspunsul corect pentru a asigura o mai mare corectitudine
+                        Terminal.showText(self, 'Raspuns Corect!!')
+                    else:
+                        Terminal.showText(self, 'Raspuns Gresit!!')
+                except:
+                    Terminal.showText(self, 'Nu s-a putut recunoaste ce ati spus')  # afisam text-ul
         else:
             Terminal.showText(self, 'ERROR: Fisierul nu se afla in locul bun')
 
